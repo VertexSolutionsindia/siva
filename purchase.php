@@ -415,7 +415,7 @@ function showHint(str) {
 				
                   <div class="form-group col-sm-12">
                   <label for="remarks">&nbsp;</label>
-                  <input type="submit" class="form-control" name="submit" placeholder="Submit" onKeyPress="return tabE(this,event)">
+                  <input type="submit" class="form-control" name="submit"  onKeyPress="return tabE(this,event)">
                 </div>   
                   
               </div>
