@@ -1,0 +1,23 @@
+/*
+ * Product custom styles
+ * -------------------------
+ */
+.fa-close{
+    color: darkred;
+    font-size: 20px;
+    opacity: .7;
+}
+.fa-close:hover{
+    opacity:1;
+    font-size: 20px;
+}
+.fa-edit{
+    color:darkslategray;
+    font-size: 18px;
+    opacity: .7;
+}
+
+.fa-edit:hover{
+    opacity: 1;
+    font-size: 18px;
+}
