@@ -176,7 +176,14 @@ for ( var index = 0; index < inputs.length; index++) {
 			
             <form class="form-horizontal" method="post" action="m_item_master_act.php">
               <div class="box-body">
-                  
+                 <?php 
+				 if(isset($_REQUEST['m']))
+				 {
+				 ?>  
+				  <div class="alert alert-danger">
+					<strong><?php echo $_REQUEST['m']; ?></strong> 
+				</div>
+				 <?php } ?>
                 <div class="form-group">
                   <label for="depcode" class="col-sm-3 control-label">Barcode</label>
                   <div class="col-sm-8">
@@ -184,7 +191,7 @@ for ( var index = 0; index < inputs.length; index++) {
                   </div>
                 </div>
                 <div class="form-group">
-                      <label for="department" class="col-sm-3 control-label">Category</label>
+                      <label for="department" class="col-sm-3 control-label">Item Name</label>
                       <div class="col-sm-4">
                         <select class="form-control" name="c_name" id="c_name" onKeyPress="return tabE(this,event)"  placeholder="Department" required>
 						<option value="">Select Category</option>
@@ -203,13 +210,13 @@ for ( var index = 0; index < inputs.length; index++) {
 					  <a href="m_category.php">Add New Category</a>
                     </div> 
 					<div class="form-group">
-                      <label for="depname" class="col-sm-3 control-label">Item Name Tamil</label>
+                      <label for="depname" class="col-sm-3 control-label">Brand Name Tamil</label>
                       <div class="col-sm-8">
                         <input type="text" class="form-control" name="item_name_1" id="item_name_1" onKeyPress="return tabE(this,event)"  placeholder="Item Name" style="text-transform:uppercase">
                       </div>
                     </div>  
 					 <div class="form-group">
-                      <label for="depname" class="col-sm-3 control-label">Item Name English</label>
+                      <label for="depname" class="col-sm-3 control-label">Brand Name English</label>
                       <div class="col-sm-8">
                         <input type="text" class="form-control" name="item_name" id="item_name" onKeyPress="return tabE(this,event)"  placeholder="Item Name" style="text-transform:uppercase" required>
                       </div>

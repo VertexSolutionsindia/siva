@@ -496,7 +496,7 @@ function showHint(str) {
                   <td><?php echo $Ftmp['mrp']; ?></td>
 				  <td><?php echo $Ftmp['discount']; ?></td>
                   <td><?php echo $Ftmp['total']; ?></td>
-				  <td><a href="purchase_delete.php?id=<?php echo $Ftmp['id']; ?>" onClick="popup_window_show('#popup_window_id_33ED1F5BB26C0F584EEC6292161E14FB', { pos : 'window-center', parent : this, x : 0, y : 0, width : 'auto' });;" class="btn-box-tool"><i class="fa fa-close custom-icon1"></i></a></td>
+				  <td><a href="sales_door_delete_single_act.php?id=<?php echo $Ftmp['id']; ?>" onClick="popup_window_show('#popup_window_id_33ED1F5BB26C0F584EEC6292161E14FB', { pos : 'window-center', parent : this, x : 0, y : 0, width : 'auto' });;" class="btn-box-tool"><i class="fa fa-close custom-icon1"></i></a></td>
                 </tr>
 				<?php
 				}

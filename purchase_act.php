@@ -19,7 +19,7 @@ $Fch=mysql_fetch_array($Ech);
 $n=mysql_num_rows($Ech);  
 
 
-  $pr="insert into p_purchase_temp set p_invoice='".$_POST['p_invoice']."',pdate='".$_POST['date']."',exp_date='".$_POST['edate']."',barcode='".$_POST['barcode']."',item_name='".strtoupper($_POST['item'])."',qty='".$_POST['qty']."',mrp='".$_POST['mrp']."',discount='".$_POST['discount']."',prate='".$_POST['prate']."',total='".$_POST['total']."',user='".$_SESSION['user']."',branch='".$_SESSION['branch']."',supplier_name='".$_POST['supplier']."',free='".strtoupper($_POST['free'])."'";  
+  $pr="insert into p_purchase_temp set p_invoice='".$_POST['p_invoice']."',pdate='".$_POST['date']."',exp_date='".$_POST['edate']."',barcode='".$_POST['barcode']."',item_name='".strtoupper($_POST['item'])."',qty='".$_POST['qty']."',mrp='".$_POST['mrp1']."',drate='".$_POST['prate']."',discount='".$_POST['discount']."',prate='".$_POST['mrp']."',total='".$_POST['total']."',user='".$_SESSION['user']."',branch='".$_SESSION['branch']."',supplier_name='".$_POST['supplier']."',free='".strtoupper($_POST['free'])."'";  
 $Epr=mysql_query($pr); 
 
 $pno=$_POST['p_invoice'];

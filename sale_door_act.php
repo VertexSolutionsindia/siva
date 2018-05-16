@@ -43,22 +43,19 @@ $Ech1=mysql_query($ch1);
 $Fch1=mysql_fetch_array($Ech1);
 $n1=mysql_num_rows($Ech1);
 $total1=0;
-if(($n1<1)&&($n>0))
+if($n1==0)
 {
 
-
-
-
-echo $ch2="select * from s_door_temp where ino='".trim($Fitm['ino'])."'";
+ $ch2="select * from s_door_temp where ino='".trim($Fitm['ino'])."'";
 $Ech2=mysql_query($ch2);
-echo $nr=mysql_num_rows($Ech2);
-$Fch3=mysql_fetch_array($Ech2);
+ $nr=mysql_num_rows($Ech2);
+//$Fch3=mysql_fetch_array($Ech2);
 while($Fch2=mysql_fetch_array($Ech2))
 {
- echo $pr1="insert into s_door_purchase set ino='".$Fch2['ino']."',cname='".$Fch2['cname']."',cmobile='".$Fch2['cmobile']."',sdate='".$Fch2['sdate']."',iname='".$Fch2['iname']."',mrp='".$Fch2['mrp']."',quantity='".$Fch2['quantity']."',discount='".$Fch2['discount']."',total='".$Fch2['total']."',user='".$_SESSION['user']."',branch='".$_SESSION['branch']."',status='Active'"; 
+ $pr1="insert into s_door_purchase set ino='".$Fch2['ino']."',cname='".$Fch2['cname']."',cmobile='".$Fch2['cmobile']."',sdate='".$Fch2['sdate']."',iname='".$Fch2['iname']."',mrp='".$Fch2['mrp']."',quantity='".$Fch2['quantity']."',discount='".$Fch2['discount']."',total='".$Fch2['total']."',user='".$_SESSION['user']."',branch='".$_SESSION['branch']."',status='Active'"; 
 $Epr1=mysql_query($pr1);
 
- $ss1="update a_inventory set qty= qty - '".$Fch2['quantity']."' where item_name='".$Fch2['iname']."' and status='Active' and branch='".$_SESSION['branch']."'"; 
+$ss1="update a_inventory set qty= qty - '".$Fch2['quantity']."' where item_name='".$Fch2['iname']."' and status='Active' and branch='".$_SESSION['branch']."'"; 
 $Ess1=mysql_query($ss1);
 
 $total1=$total1+$Fch2['total'];
@@ -66,16 +63,19 @@ $total1=$total1+$Fch2['total'];
 }
 }
 
- $pr="insert into s_door_invoice set invoice_no='".$Fch3['ino']."',sdate='".$Fch3['sdate']."',customer_name='".$Fch3['cname']."',mobile_no='".$Fch3['cmobile']."',net_amount='$total1',status='Active',user='".$_SESSION['user']."',branch='".$_SESSION['branch']."'";
+$ch3="select * from s_door_temp where ino='".trim($Fitm['ino'])."'";
+$Ech3=mysql_query($ch3);
+$Fch3=mysql_fetch_array($Ech3);
+
+$pr="insert into s_door_invoice set invoice_no='".$Fch3['ino']."',sdate='".$Fch3['sdate']."',customer_name='".$Fch3['cname']."',mobile_no='".$Fch3['cmobile']."',net_amount='$total1',status='Active',user='".$_SESSION['user']."',branch='".$_SESSION['branch']."'";
 $Epr=mysql_query($pr);
 
- $upno="update generate set dsno=dsno+1 where id ='1'";
+$upno="update generate set dsno=dsno+1 where id ='1'";
 $Eupno=mysql_query($upno);
 
-// $pd="delete from s_door_temp where ino='".$Fitm['ino']."'";
+$pd="delete from s_door_temp where ino='".$Fitm['ino']."'";
 $Epd=mysql_query($pd); 
 
-exit();
 header("location:sale_door.php");
 }
 ?>

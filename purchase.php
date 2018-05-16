@@ -211,6 +211,23 @@ $.ajax({
  });
 
 }
+function get_prate1(){ 
+    var qty = 0;
+    var inputs = document.getElementById('item').value;
+
+
+$.ajax({
+      type:'post',
+        url:'get3.php',// put your real file name 
+        data:{inputs},
+        success:function(msg){
+              // your message will come here.  
+        document.getElementById("mrp").value=msg;
+   
+       }
+ });
+
+}
 </script>
 
 <script>
@@ -377,7 +394,7 @@ function showHint(str) {
   onChange="getrate(this.value)">
                 </div>
                 <div class="form-group col-sm-4">
-                  <label for="ponumber">Item Name</label>
+                  <label for="ponumber">Brand Name</label>
                   <input type="text" class="form-control" name="item" id="item" onKeyUp="get_item1();get_mrp1();"  placeholder="ItemName"  onKeyPress="return tabE(this,event)" style="text-transform:uppercase" >
                 </div>
 
@@ -385,8 +402,12 @@ function showHint(str) {
                   <label for="ponumber">Quantity</label>
                   <input type="text" class="form-control" name="qty" id="qty"  placeholder="Quantity" onKeyUp="get_total()" onKeyPress="return tabE(this,event)" >
                 </div>
-                <div class="form-group col-sm-4">
-                  <label for="refnumber">MRP</label>
+				<div class="form-group col-sm-2">
+                  <label for="refnumber">MRP </label>
+                  <input type="text" class="form-control" name="mrp1" id="mrp1"  placeholder="MRP" onKeyUp="get_total()" onKeyPress="return tabE(this,event)" >
+                </div>
+                <div class="form-group col-sm-2">
+                  <label for="refnumber">Purchase Rate</label>
                   <input type="text" class="form-control" name="mrp" id="mrp"  placeholder="MRP" onKeyUp="get_total()" onKeyPress="return tabE(this,event)" >
                 </div>
 				 <div class="form-group col-sm-4">
@@ -395,7 +416,7 @@ function showHint(str) {
                 </div>
              
              <div class="form-group col-sm-2">
-                  <label for="refnumber">Purchase Rate</label>
+                  <label for="refnumber">Discounted Rate</label>
                   <input type="text" class="form-control" name="prate" id="prate"  placeholder="Purchase Rate" onKeyPress="return tabE(this,event)">
                 </div>
 				<div class="form-group col-sm-2">
@@ -444,8 +465,9 @@ function showHint(str) {
                   <th>Brand Name </th>
 				  <th>Qty</th>
 				  <th>MRP</th>
-				  <th>Discount</th>
 				  <th>Purchase Rate</th>
+				  <th>Discount</th>
+				  <th>Discounted Rate</th>
 				  <th>Free</th>
 				  <th>Total</th>
                   <th width="15%">Edit / Delete</th>
@@ -471,10 +493,11 @@ function showHint(str) {
                   <td><?php echo $Ftmp['item_name']; ?></td>
                   <td><?php echo $Ftmp['qty']; ?></td>
                   <td><?php echo $Ftmp['mrp']; ?></td>
+				  <td><?php echo $Ftmp['prate']; ?></td>
 				  <td><?php echo $Ftmp['discount']; ?></td>
-                  <td><?php echo $FEsc['p_rate']; ?></td>
+                  <td><?php echo $Ftmp['prate']-($Ftmp['prate']*($Ftmp['discount']/100)); ?></td>
 				   <td><?php echo $Ftmp['free']; ?></td>
-                  <td><?php echo ($FEsc['p_rate']*$Ftmp['qty']); ?></td>
+                  <td><?php echo $Ftmp['total']; ?></td>
 				  <td><a href="purchase_delete.php?id=<?php echo $Ftmp['id']; ?>" onClick="popup_window_show('#popup_window_id_33ED1F5BB26C0F584EEC6292161E14FB', { pos : 'window-center', parent : this, x : 0, y : 0, width : 'auto' });;" class="btn-box-tool"><i class="fa fa-close custom-icon1"></i></a></td>
                 </tr>
 				<?php

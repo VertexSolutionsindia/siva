@@ -108,7 +108,7 @@ color:#FFFFFF;
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Category  Master
+        Item  Master
         <small></small>
       </h1>
     </section>
@@ -120,9 +120,9 @@ color:#FFFFFF;
         <div class="col-md-12">
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Available Category</h3>
+              <h3 class="box-title">Available Item</h3>
             
-			<h4><div align="right" style=" border::groove; color:#00BFFF"> <a href="m_category.php"><button>Add New Category</button></a> </div></h4>
+			<h4><div align="right" style=" border::groove; color:#00BFFF"> <a href="m_category.php"><button>Add New Item</button></a> </div></h4>
             </div>
             <!-- /.box-header --> 
             <!-- form start -->
@@ -139,13 +139,13 @@ color:#FFFFFF;
               <div class="box-body">
                   
                 <div class="hidden">
-                  <label for="itemcode" class="col-sm-3 control-label">Category Id</label>
+                  <label for="itemcode" class="col-sm-3 control-label">Item Id</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" name="c_id" id="c_id" value="<?php echo $Fct1['c_id']; ?>" onKeyPress="return tabE(this,event)" required>
                   </div>
                 </div>
                 <div class="form-group">
-                      <label for="catname" class="col-sm-3 control-label">Category Name</label>
+                      <label for="catname" class="col-sm-3 control-label">Item Name</label>
                       <div class="col-sm-8">
                         <input type="text" class="form-control" name="c_name" autofocus="autofocus" id="c_name"  value="<?php echo $Fct1['c_name']; ?>" onKeyPress="return tabE(this,event)" style="text-transform:uppercase"  required>
                       </div>
@@ -194,7 +194,7 @@ color:#FFFFFF;
               <table id="example1" class="table table-bordered table-striped" style="width:100%">
                 <thead>
                 <tr>
-                  <th>Category Name</th>
+                  <th>Item Name</th>
 				  <th>Description</th>
 					 <th>User</th>
 					 <th>Branch</th>

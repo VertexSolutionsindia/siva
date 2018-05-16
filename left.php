@@ -57,8 +57,8 @@
 			<li><a href="m_staff_master_view.php"><i class="fa fa-user-plus"></i> <span>Staff Master</span></a></li>
 			<li><a href="m_unit_master_view.php"><i class="fa fa-link"></i> <span>unit Master</span></a></li>
             <li><a href="m_supplier_master_view.php"><i class="fa fa-user"></i> <span>Supplier Master</span></a></li>
-			<li><a href="m_category_view.php"><i class="fa fa-dropbox"></i> <span>category Creation</span></a></li>
-			 <li><a href="m_item_master_view.php"><i class="fa fa-link"></i> <span>Item Master</span></a></li>
+			<li><a href="m_category_view.php"><i class="fa fa-dropbox"></i> <span>Item Creation</span></a></li>
+			 <li><a href="m_item_master_view.php"><i class="fa fa-link"></i> <span>Brand Master</span></a></li>
 			  <li><a href="m_customer_master_view.php"><i class="fa fa-link"></i> <span>Customer Master</span></a></li>
             
           </ul>

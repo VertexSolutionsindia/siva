@@ -155,7 +155,7 @@ color:#FFFFFF;
                <div class="form-group">
                   <label for="depcode" class="col-sm-3 control-label">Barcode</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="barcode" id="barcode"  value="<?php echo $Fct1['barcode']; ?>"  onKeyPress="return tabE(this,event)"  placeholder="Barcode">
+                    <input type="text" class="form-control" name="barcode" id="barcode"  value="<?php echo $Fct1['barcode']; ?>"  onKeyPress="return tabE(this,event)"  placeholder="Barcode" readonly="true">
                   </div>
                 </div>
                 <div class="form-group">
@@ -267,10 +267,10 @@ color:#FFFFFF;
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Barcode</th>
-                  <th>Category Name</th>
-				    <th>Item Name</th>
-					 <th>Item Name</th>
+                  
+                  <th>Item Name</th>
+				    <th >Brand Name</th>
+					<th>Barcode</th>
 					   <th>Unit</th>
 					    <th>MRP</th>
 					 <th>User</th>
@@ -281,17 +281,17 @@ color:#FFFFFF;
                 </thead>
                           <tbody>
 				<?php
-				$ct="select * from m_item_master where status='Active' and branch='".$_SESSION['branch']."'";
+				$ct="select * from m_item_master where (status='Active' and branch='".$_SESSION['branch']."') order by c_name";
 				$Ect=mysql_query($ct);
 				while($Fct=mysql_fetch_array($Ect))
 				{
 				?>
                 <tr>
-                  <td><?php echo $Fct['barcode']; ?></td>
-				  <td><?php echo $Fct['c_name']; ?></td>
-                  <td><?php echo $Fct['item_name_1']; ?></td>
-				   <td><?php echo $Fct['item_name']; ?></td>
-				    <td><?php echo $Fct['unit']; ?></td>
+                  
+				  <td align="left"><?php echo $Fct['c_name']; ?></td>
+                  <td align="left"><?php echo $Fct['item_name']; ?></td>
+				  <td><?php echo $Fct['barcode']; ?></td>
+				  <td><?php echo $Fct['unit']; ?></td>
 			      <td><?php echo $Fct['mrp']; ?></td>
 				  <td><?php echo $Fct['user']; ?></td>
 				  <td><?php echo $Fct['branch']; ?></td>
