@@ -292,25 +292,18 @@ function showHint(str) {
     </section>
    <?php
    
-   if(isset($_REQUEST['pno']))
-   {
-   $sn="select * from p_purchase_temp";
-   $Esn=mysql_query($sn);
-   $Fsn=mysql_fetch_array($Esn);
-   $pno=$_REQUEST['pno'];
-   }
-   else
-   {
-   $pn="select * from generate ";
-   $Epn=mysql_query($pn);
-   $Fpn=mysql_fetch_array($Epn); 
-   $pno= $Fpn['pno']; 
-   }	   
-   ?>
+
+			if(isset($_REQUEST['p_invoice'])!="")
+			{
+			$ct1="select * from  p_purchase where p_invoice='".$_REQUEST['p_invoice']."'";
+				$Ect1=mysql_query($ct1);
+				$Fct1=mysql_fetch_array($Ect1);
+			?>   
+
    
     <!-- Main content -->
     <section class="content container-fluid">
-        <form role="form" method="post" action="purchase_act.php">
+        <form role="form" method="post" action="purchase_edit_act.php">
       <div class="row">
         <!-- left column -->
         <div class="col-md-12">
@@ -326,33 +319,20 @@ function showHint(str) {
                   
                 <div class="form-group col-sm-4">
                   <label for="Branch">Purchase Invoice No</label>
-                  <input type="text" class="form-control" name="p_invoice" id="p_invoice" value="<?php echo $pno; ?>" placeholder="Purchase Id" onKeyPress="return tabE(this,event)" required="true">
+                  <input type="text" class="form-control" name="p_invoice" id="p_invoice" value="<?php echo $Fct1['p_invoice']; ?>" readonly="true" placeholder="Purchase Id" onKeyPress="return tabE(this,event)" required="true">
                 </div>
 				<div class="form-group col-sm-4">
                   <label for="Branch">Supplier Name</label>
 					<select class="form-control" name="supplier" id="supplier" onKeyPress="return tabE(this,event)"  placeholder="Supplier" required="true"  >
 						
 						<?php 
-						if(!isset($_REQUEST['pno']))
-						{
-						//echo "gdfgdfgdf";
-						?>
-						<option value="">Select Supplier</option>
 						
-						<?php }
-						
-						echo $ss1="select * from p_purchase_temp where p_invoice='$pno'";
-						$Ess1=mysql_query($ss1);
-						$Fss1=mysql_fetch_array($Ess1);
-						
-						$ss2="select * from m_supplier_master where id='".$Fss1['supplier_name']."'";
-						$Ess2=mysql_query($ss2);
-						$Fss2=mysql_fetch_array($Ess2);
-						
-						if($Fss2['supplier_name'])
+						$dep1="select * from p_purchase where p_invoice='".$_REQUEST['p_invoice']."'";
+						$dep=mysql_query($dep1);
+						while($result=mysql_fetch_array($dep))
 						{
 						?>
-						<option value="<?php echo $Fss2['supplier_name']; ?>" select="true"><?php echo $Fss2['supplier_name']; ?></option>
+						<option value="<?php echo $result['supplier'];?>"><?php echo $result['supplier'];?></option>
 						<?php
 						}
 						$dep1="select * from m_supplier_master where status='Active'";
@@ -360,7 +340,7 @@ function showHint(str) {
 						while($result=mysql_fetch_array($dep))
 						{
 						?>
-						<option value="<?php echo $result['id'];?>"><?php echo $result['supplier_name'];?></option>
+						<option value="<?php echo $result['supplier_name'];?>"><?php echo $result['supplier_name'];?></option>
 						<?php
 						}
 						?>
@@ -466,6 +446,7 @@ function showHint(str) {
 
         </div>
 	
+	
 <div class="col-md-12">
           <div class="box box-danger">
             <div class="box-header">
@@ -489,10 +470,11 @@ function showHint(str) {
                 </tr>
 				<?php
 				$i=0;
-				$tmp="select * from p_purchase_temp ";
+				$tmp="select * from p_purchase  where p_invoice='".$_REQUEST['p_invoice']."'";
 				$Etmp=mysql_query($tmp);
 				while($Ftmp=mysql_fetch_array($Etmp))
 				{
+				
 				$i++;
 				
 				$sc="select * from m_item_master where item_name='".trim($Ftmp['item_name'])."'";
@@ -513,13 +495,41 @@ function showHint(str) {
                   <td><?php echo $Ftmp['prate']-($Ftmp['prate']*($Ftmp['discount']/100)); ?></td>
 				   <td><?php echo $Ftmp['free']; ?></td>
                   <td><?php echo $Ftmp['total']; ?></td>
-				  <td><a href="purchase_delete.php?id=<?php echo $Ftmp['id']; ?>" onClick="popup_window_show('#popup_window_id_33ED1F5BB26C0F584EEC6292161E14FB', { pos : 'window-center', parent : this, x : 0, y : 0, width : 'auto' });;" class="btn-box-tool"><i class="fa fa-close custom-icon1"></i></a></td>
+				  <td><a href="purchase_edit_delete.php?id=<?php echo $Ftmp['id']; ?>" onClick="popup_window_show('#popup_window_id_33ED1F5BB26C0F584EEC6292161E14FB', { pos : 'window-center', parent : this, x : 0, y : 0, width : 'auto' });;" class="btn-box-tool"><i class="fa fa-close custom-icon1"></i></a></td>
+                </tr>
+				<?php
+				}
+				
+				$tmp="select * from p_purchase_temp ";
+				$Etmp=mysql_query($tmp);
+				while($Ftmp=mysql_fetch_array($Etmp))
+				{
+				$i++;
+				
+				$sc="select * from m_item_master where item_name='".trim($Ftmp['item_name'])."'";
+				$Esc=mysql_query($sc);
+				$FEsc=mysql_fetch_array($Esc);
+				
+				
+				
+				?>
+               
+                <tr>
+                <td style="width: 30px"><?php echo $i; ?></td>
+				  <td><?php echo $FEsc['c_name']; ?></td>
+                  <td><?php echo $Ftmp['item_name']; ?></td>
+                  <td><?php echo $Ftmp['qty']; ?></td>
+                  <td><?php echo $Ftmp['mrp']; ?></td>
+				  <td><?php echo $Ftmp['prate']; ?></td>
+				  <td><?php echo $Ftmp['discount']; ?></td>
+                  <td><?php echo $Ftmp['prate']-($Ftmp['prate']*($Ftmp['discount']/100)); ?></td>
+				   <td><?php echo $Ftmp['free']; ?></td>
+                  <td><?php echo $Ftmp['total']; ?></td>
+				  <td><a href="purchase_edit_delete.php?id=<?php echo $Ftmp['id']; ?>" onClick="popup_window_show('#popup_window_id_33ED1F5BB26C0F584EEC6292161E14FB', { pos : 'window-center', parent : this, x : 0, y : 0, width : 'auto' });;" class="btn-box-tool"><i class="fa fa-close custom-icon1"></i></a></td>
                 </tr>
 				<?php
 				}
 				?>
-                
-                
               </table>
             </div>
             <!-- /.box-body -->
@@ -533,6 +543,9 @@ function showHint(str) {
                 </div>    
                 </div>
     </form>
+	<?php
+			}
+			?>
     </section>
     <!-- /.content -->
   </div>

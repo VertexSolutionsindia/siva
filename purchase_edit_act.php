@@ -18,15 +18,14 @@ $Ech=mysql_query($ch);
 $Fch=mysql_fetch_array($Ech);
 $n=mysql_num_rows($Ech);  
 
-
-  $pr="insert into p_purchase_temp set p_invoice='".$_POST['p_invoice']."',pdate='".$_POST['date']."',exp_date='".$_POST['edate']."',barcode='".$_POST['barcode']."',item_name='".strtoupper($_POST['item'])."',qty='".$_POST['qty']."',mrp='".$_POST['mrp1']."',drate='".$_POST['prate']."',discount='".$_POST['discount']."',prate='".$_POST['mrp']."',total='".$_POST['total']."',user='".$_SESSION['user']."',branch='".$_SESSION['branch']."',supplier_name='".$_POST['supplier']."',free='".strtoupper($_POST['free'])."',units='".$_POST['units']."'";  
+ $pr="insert into p_purchase_temp set p_invoice='".$_POST['p_invoice']."',pdate='".$_POST['date']."',exp_date='".$_POST['edate']."',barcode='".$_POST['barcode']."',item_name='".strtoupper($_POST['item'])."',qty='".$_POST['qty']."',mrp='".$_POST['mrp1']."',drate='".$_POST['prate']."',discount='".$_POST['discount']."',prate='".$_POST['mrp']."',total='".$_POST['total']."',user='".$_SESSION['user']."',branch='".$_SESSION['branch']."',supplier_name='".$_POST['supplier']."',free='".strtoupper($_POST['free'])."',units='".$_POST['units']."'";  
 $Epr=mysql_query($pr); 
 
 $pno=$_POST['p_invoice'];
 
 
 
-header("location:purchase.php?pno=$pno");
+header("location:purchase_edit.php?p_invoice=$pno");
 }
 else
 {
@@ -43,8 +42,7 @@ $Ech1=mysql_query($ch1);
 $Fch1=mysql_fetch_array($Ech1);
  $n1=mysql_num_rows($Ech1); 
 
-if(($n1<1)&&($n>0))
-{
+
 
  $ch2="select * from p_purchase_temp where p_invoice='".$_POST['p_invoice']."'"; 
 $Ech2=mysql_query($ch2);
@@ -69,7 +67,7 @@ $ss1="update a_inventory set qty= qty + '".$Fch2['qty']."' where barcode='".$Fch
 $Ess1=mysql_query($ss1);
 }
 }
-}
+
 
 $upno="update generate set pno=pno+1 where id ='1'";
 $Eupno=mysql_query($upno);
@@ -78,11 +76,11 @@ $pd="delete from p_purchase_temp where p_invoice='".$_POST['p_invoice']."'";
 $Epd=mysql_query($pd);
 
 
-header("location:purchase.php");
+header("location:purchase_details_view.php");
 }
 }
 else
 {
-header("location:purchase.php");
+header("location:purchase_details_view.php");
 }
 ?>

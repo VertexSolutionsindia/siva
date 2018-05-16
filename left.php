@@ -71,7 +71,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="purchase.php"><i class="fa fa-shopping-cart"></i> <span>Purchase Entry</span></a></li>
+            <li><a href="purchase_details_view.php"><i class="fa fa-shopping-cart"></i> <span>Purchase Entry</span></a></li>
           </ul>
        
         </li> 
